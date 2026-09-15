@@ -12,8 +12,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/products', productRouter);
 app.use(errorMiddleware);
+app.use('/api/products', productRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
