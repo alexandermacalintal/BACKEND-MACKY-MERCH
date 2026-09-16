@@ -5,7 +5,6 @@
 **1. Install dependencies**
 
 ```bash
-#Node.js 22 was used for this project
 npm install
 nvm install 22
 nvm use 22
