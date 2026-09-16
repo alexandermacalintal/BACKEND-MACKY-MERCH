@@ -39,17 +39,25 @@ export const getProductById = (req, res, next) => {
 export const updateProduct = (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, price, stock, category, sku, size } = req.body;
-
     const stmt = db.prepare('SELECT * FROM products WHERE id = ?').get(id);
     if (!stmt) {
       return res.status(404).json({ error: 'Product not found' });
     }
+    
+    const { name, price, stock, category, sku, size } = req.body;
+    const merged = {
+      name: name ?? stmt.name,
+      price: price ?? stmt.price,
+      stock: stock ?? stmt.stock,
+      category: category ?? stmt.category,
+      sku: sku ?? stmt.sku,
+      size: size ?? stmt.size
+    }
 
     const updateStmt = db.prepare('UPDATE products SET name = ?, price = ?, stock = ?, category = ?, sku = ?, size = ? WHERE id = ?');
-    updateStmt.run(name, price, stock, category, sku, size, id);
+    updateStmt.run(merged.name, merged.price, merged.stock, merged.category, merged.sku, merged.size, id);
 
-    const updatedProduct = { id: parseInt(id), name, price, stock, category, sku, size };
+    const updatedProduct = { id: parseInt(id), ...merged };
     return res.status(200).json(updatedProduct);
   } catch (error) {
     next(error);
