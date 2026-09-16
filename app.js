@@ -1,11 +1,6 @@
 import express from 'express';
-
-import { PORT } from './config/env.js';
-
 import productRouter from './routes/products.routes.js';
-
 import db from './db.js';
-
 import errorMiddleware from './middleware/error.middleware.js';
 
 const app = express();
@@ -19,11 +14,5 @@ app.get('/', (req, res) => {
 });
 
 app.use(errorMiddleware);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-
 
 export default app;
