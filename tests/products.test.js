@@ -1,6 +1,6 @@
-import app from './app.js';
+import app from '../app.js';
 import request from 'supertest';
-import {describe, it, expect, beforeAll, afterAll} from 'vitest';
+import {describe, it, expect} from 'vitest';
 
 describe('Product API', () => {
   it('should return 201 and create a new product', async () => {
