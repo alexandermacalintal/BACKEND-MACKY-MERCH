@@ -2,7 +2,7 @@ import {Router} from 'express';
 
 import { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from '../controllers/products.controller.js';
 
-import {validateProduct,validateProductUpdate} from '../middlewares/validateProduct.js';
+import {validateProduct,validateProductUpdate} from '../middleware/validate.middleware.js';
 
 const productRouter = Router();
 

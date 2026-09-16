@@ -1,4 +1,4 @@
-const validateProduct = (req, res, next) => {
+export const validateProduct = (req, res, next) => {
     try {
         const { name, price, stock, category, sku, size } = req.body;
         
@@ -20,7 +20,7 @@ const validateProduct = (req, res, next) => {
     }
 };
 
-const validateProductUpdate = (req, res, next) => {
+export const validateProductUpdate = (req, res, next) => {
     try {
         const { name, price, stock, category, sku, size } = req.body;
 
@@ -47,7 +47,3 @@ const validateProductUpdate = (req, res, next) => {
         next(error);
     }
 };
-
-export default validateProduct;
-
-export default validateProductUpdate;
